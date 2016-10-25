@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<plugin xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="../../../engine/Shopware/Components/Plugin/schema/plugin.xsd">
+
+    <label>TestKeyIssue</label>
+    <version>0.1.0</version>
+    <copyright>Synonymous</copyright>
+    <link>http://www.synonymous.rocks</link>
+    <author>Synonymous</author>
+    <description>Test plugin.</description>
+
+    <compatibility minVersion="5.2.7" />
+
+</plugin>

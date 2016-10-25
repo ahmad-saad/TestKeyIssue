@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <services>
+        <!-- Define the logger for this plugin -->
+        <service id="test_logger.logger.handler" class="Monolog\Handler\RotatingFileHandler" public="false">
+            <argument>%kernel.logs_dir%/plugin_test_logger_%kernel.environment%.log</argument>
+            <argument>14</argument>
+            <call method="pushProcessor">
+                <argument type="service" id="monolog.processor.uid" />
+            </call>
+        </service>
+
+        <service id="test_logger.logger.psr3processor" class="Monolog\Processor\PsrLogMessageProcessor" public="false"></service>
+
+        <service id="test_logger.logger" class="Shopware\Components\Logger">
+            <argument>PhaApi</argument>
+            <call method="pushHandler">
+                <argument type="service" id="test_logger.logger.handler" />
+            </call>
+            <call method="pushProcessor">
+                <argument type="service" id="test_logger.logger.psr3processor" />
+            </call>
+        </service>
+        <!-- /Define the logger for this plugin -->
+
+        <service
+                id="test_key_issue.commands.test_command"
+                class="TestKeyIssue\Commands\TestCommand">
+            <tag name="console.command"/>
+            <argument type="service" id="test_logger.logger" />
+        </service>
+
+
+    </services>
+
+</container>
