@@ -1,4 +1,4 @@
-To start the test execute the following CLI command:
+To start the test install the plugin in /custom/plugins/TestKeyIssue and execute the following CLI command:
 **php bin/console testcommand**
 
 Causes the following Exception:
